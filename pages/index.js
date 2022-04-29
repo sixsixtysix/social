@@ -1,32 +1,71 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { useRouter } from 'next/router'
-import { useContext } from 'react'
-import ConnectButton from '../components/ConnectButton'
-import MainPublication from '../components/MainPublication'
-import UserContext from '../contexts/UserContext'
-import { publications } from '../mockdata/mock_publication'
-import styles from '../styles/Home.module.css'
-import { tryContract } from '../utils/chain_utils'
+import { useState, useEffect } from 'react'
+import { useWallet } from '@solana/wallet-adapter-react'
+import SignUp from '../components/SignUp'
+import Header from '../components/Header'
+import Feed from '../components/Feed'
+import RightSidebar from '../components/RightSidebar'
+import Sidebar from '../components/Sidebar'
+
+const style = {
+  wrapper: `bg-[#18191a] min-h-screen duration-[0.5s]`,
+  homeWrapper: `flex`,
+  center: `flex-1`,
+  main: `flex-1 flex justify-center`,
+  signupContainer: `flex items-center justify-center w-screen h-[70vh]`,
+}
 
 export default function Home() {
-  const global = useContext(UserContext)
-  const router = useRouter()
-  console.log('get on it', global.user);
-  if (global.user) {
-    router.push('/botconfig')
+  const [registered, setRegistered] = useState(false)
+  const [name, setName] = useState('')
+  const [url, setUrl] = useState('')
+  const [users, setUsers] = useState([])
+
+  useEffect(() => {
+    ;(async () => {
+      await requestUsersData()
+    })()
+  }, [])
+
+  const wallet = useWallet()
+
+  const requestUsersData = async activeAccount => {
+    try {
+      const response = await fetch(`/api/fetchUsers`)
+      const data = await response.json()
+
+      setUsers(data.data)
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (
-    <div className="w-full flex justify-center my-40">
-      <div className="min-w-md max-w-[50vw] rounded-md overflow-hidden shadow-2xl w-5/6 bg-white flex flex-col items-center py-12">
-        <span className="text-xl">Welcome!</span>
-        <div className="font-light py-10 max-w-[40vw] text-center text-lg">
-          Social Link makes tansitioning to web3 easy. Build a social link you
-          own on the fly by configuring your social bot here.
+    <div className={style.wrapper}>
+      <Header name={name} url={url} />
+
+      {registered ? (
+        <div className={style.homeWrapper}>
+          <Sidebar name={name} url={url} />
+          <div className={style.main}>
+            <Feed connected={wallet.connected} name={name} url={url} />
+          </div>
+          <RightSidebar
+            getUsers={requestUsersData}
+            users={users}
+            setUsers={setUsers}
+          />
         </div>
-        <ConnectButton />
-      </div>
+      ) : (
+        <div className={style.signupContainer}>
+          <SignUp
+            setRegistered={setRegistered}
+            name={name}
+            setName={setName}
+            url={url}
+            setUrl={setUrl}
+          />
+        </div>
+      )}
     </div>
   )
 }
