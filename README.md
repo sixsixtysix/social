@@ -1,24 +1,13 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Polygon Mumbai TestNet -> https://mumbai.polygonscan.com/address/0xa8A3d4E72c61D75a7cdDcF0A4d8b9C5588c7E8a9
 
-## Getting Started
 
-First, run the development server:
 
-```bash
-yarn add
-#or
-npm install
+![nft-minting-1](https://user-images.githubusercontent.com/90610801/161538218-aa9ce468-fb2d-4013-883a-077b67ce9788.jpg)
 
-npm run dev
-# or
-yarn dev
-```
+![nft-minting-2](https://user-images.githubusercontent.com/90610801/161538241-c0d6e2cb-d879-4b5b-9032-62e76f09a11a.jpg)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+![nft-miniting-3](https://user-images.githubusercontent.com/90610801/161538263-90f1cb7c-67e2-4852-bb30-23f86b03a267.jpg)
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-## Deploy on Vercel
+![nft-minting-4](https://user-images.githubusercontent.com/90610801/161538273-6e8db00a-387e-4d2e-a18f-51450950947a.jpg)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+![nft-minting-5](https://user-images.githubusercontent.com/90610801/161538283-1f6b446b-b860-4f3e-94fa-358d04f41578.jpg)
